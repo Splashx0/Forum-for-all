@@ -6,22 +6,23 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { useContext } from "react";
 import { RoomContext } from "../context/RoomContext";
 const Profile = () => {
-  const { dispatch } = useContext(RoomContext);
+  const { rooms, dispatch } = useContext(RoomContext);
   const { user } = useAuthContext();
   const connectedUser = user?.username;
   const { id } = useParams();
   const [Profile, setProfile] = useState([]);
-  const [Rooms, setRooms] = useState(null);
+  const [Rooms, setRooms] = useState([]);
 
   useEffect(() => {
     const fetchProfile = async () => {
-      const response = await fetch(`/api/profile/${id}`, {});
+      const response = await fetch(`/api/profile/${id}`);
       const data = await response.json();
       setProfile(data.user);
       setRooms(data.user.rooms);
     };
     fetchProfile();
-  }, [user]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rooms]);
   const handleDelete = async (id) => {
     const response = await fetch(`/api/rooms/${id}`, {
       method: "DELETE",

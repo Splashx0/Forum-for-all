@@ -10,7 +10,7 @@ const messageRoutes = require("./routes/messageRoutes");
 
 const cors = require("cors");
 //connect to mongo
-const dbURI = "mongodb+srv://splash:splash@blog.msufnqt.mongodb.net/blogdb";
+//const dbURI = "mongodb+srv://splash:splash@blog.msufnqt.mongodb.net/blogdb";
 const dbURI2 = "mongodb://localhost:27017/study";
 //asynchrenous
 mongoose
