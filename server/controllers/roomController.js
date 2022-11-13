@@ -3,7 +3,6 @@ const User = require("../models/user");
 const Message = require("../models/message");
 const Topic = require("../models/topic");
 const mongoose = require("mongoose");
-const mdq = require("mongo-date-query");
 
 //GET all rooms
 const getRooms = async (req, res) => {
