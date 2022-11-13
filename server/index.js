@@ -7,7 +7,6 @@ const roomRoutes = require("./routes/roomRoutes");
 const topicRoutes = require("./routes/topicRoutes");
 const profileRoutes = require("./routes/profileRoutes");
 const messageRoutes = require("./routes/messageRoutes");
-const filterTopicsRoutes = require("./routes/filterTopics");
 
 const cors = require("cors");
 //connect to mongo

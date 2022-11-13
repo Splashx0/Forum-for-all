@@ -61,7 +61,7 @@ router.delete("/:id", async (req, res) => {
   const room = await Room.findByIdAndDelete({ _id: id });
 
   await Topic.updateOne({ _id: room.topic }, { $pull: { rooms: room._id } });
-  const messages = await Message.find({ room: room._id }).remove();
+  const messages = await Message.find({ room: room._id }).deleteMany();
   if (!room) {
     return res.status(400).json({ error: "Not a room" });
   }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { RoomContext } from "../context/RoomContext";
 const Topics = () => {
-  const { dispatch } = useContext(RoomContext);
+  const { rooms, dispatch } = useContext(RoomContext);
   const [topics, setTopics] = useState([]);
   const [allRooms, setAllRooms] = useState([]);
   useEffect(() => {
@@ -12,7 +12,7 @@ const Topics = () => {
       setTopics(topics.topics);
     };
     fetchTopics();
-  }, [topics.length]);
+  }, [rooms]);
   useEffect(() => {
     const fetchRooms = async () => {
       const response = await fetch("/api/rooms");
