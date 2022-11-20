@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const maxAge = 3 * 24 * 60 * 60;
 const createToken = (_id, username) => {
-  return jwt.sign({ _id, username }, "splash secret", {
+  return jwt.sign({ _id, username }, process.env.SECRET, {
     expiresIn: maxAge,
   });
 };

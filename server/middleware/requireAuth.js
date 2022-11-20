@@ -10,7 +10,7 @@ const requireAuth = async (req, res, next) => {
   }
   const token = authorization.split(" ")[1];
   try {
-    const { username } = jwt.verify(token, "splash secret");
+    const { username } = jwt.verify(token, process.env.SECRET);
     req.user = await User.findOne({ username }).select("username");
     next(); //fire next handler
   } catch (error) {

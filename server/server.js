@@ -7,15 +7,13 @@ const roomRoutes = require("./routes/roomRoutes");
 const topicRoutes = require("./routes/topicRoutes");
 const profileRoutes = require("./routes/profileRoutes");
 const messageRoutes = require("./routes/messageRoutes");
+require("dotenv").config();
 
 const cors = require("cors");
-//connect to mongo
 //const dbURI = "mongodb+srv://splash:splash@blog.msufnqt.mongodb.net/blogdb";
-const dbURI2 = "mongodb://localhost:27017/study";
-//asynchrenous
 mongoose
-  .connect(dbURI2)
-  .then((result) => app.listen(8000))
+  .connect(process.env.MONGO_URI)
+  .then((result) => app.listen(process.env.PORT))
   .catch((err) => console.log(err));
 
 //middlewares

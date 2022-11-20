@@ -35,7 +35,7 @@ function NavBar() {
         <Link to="/">
           <div className="navbar_logo">
             <img src={Logo} alt="logo" />
-            <h1>StudyBuddy</h1>
+            <h1>IT Forum</h1>
           </div>
         </Link>
         <Search />
