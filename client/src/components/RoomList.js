@@ -1,22 +1,26 @@
 import React, { useEffect } from "react";
 import AddRoom from "../icons/addRoom.svg";
 import DeleteIcon from "../icons/deleteIcon.svg";
-import { useAuthContext } from "../hooks/useAuthContext";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { RoomContext } from "../context/RoomContext";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteRoom, setRooms } from "../redux/actions/roomActions";
+import { deleteMessages } from "../redux/actions/messageActions";
+import { updateTopics } from "../redux/actions/topicActions";
+
 const RoomList = () => {
-  const { rooms, dispatch } = useContext(RoomContext);
-  const { user } = useAuthContext();
+  const { user } = useSelector((state) => state.userReducer);
+  const { rooms } = useSelector((state) => state.roomReducer);
+  const dispatch = useDispatch();
+
   const connectedUser = user?.username;
   useEffect(() => {
     const fetchRooms = async () => {
       const response = await fetch("/api/rooms");
       const data = await response.json();
-      dispatch({ type: "GET_ROOMS", payload: data.rooms });
+      dispatch(setRooms(data.rooms));
     };
     fetchRooms();
-  }, []);
+  }, [dispatch]);
 
   const handleDelete = async (id) => {
     const response = await fetch(`/api/rooms/${id}`, {
@@ -24,7 +28,9 @@ const RoomList = () => {
       headers: { Authorization: `Bearer ${user.token}` },
     });
     if (response.ok) {
-      dispatch({ type: "DELETE_ROOMS", payload: id });
+      dispatch(deleteRoom(id));
+      dispatch(deleteMessages(id));
+      dispatch(updateTopics(id));
     }
   };
 

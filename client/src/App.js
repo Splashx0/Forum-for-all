@@ -2,16 +2,25 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NavBar from "./components/NavBar";
-import { Routes, Route, Navigate } from "react-router-dom";
 import Profile from "./pages/Profile";
 import Room from "./pages/Room";
 import CreateRoom from "./pages/CreateRoom";
 import Addtopic from "./components/Addtopic";
-import { useAuthContext } from "./hooks/useAuthContext";
 import EditProfile from "./pages/EditProfile";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { loginUser } from "./redux/actions/userActions";
 
 function App() {
-  const { user } = useAuthContext();
+  const { user } = useSelector((state) => state.userReducer);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      dispatch(loginUser(user));
+    }
+  }, []);
   return (
     <div className="main">
       <NavBar />

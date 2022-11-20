@@ -1,26 +1,26 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { MessagesContext } from "../context/MessagesContext";
-import { RoomContext } from "../context/RoomContext";
-const RecentActivities = () => {
-  const { messages, dispatch } = useContext(MessagesContext);
-  const { rooms } = useContext(RoomContext);
+import { useSelector, useDispatch } from "react-redux";
+import { setMessages } from "../redux/actions/messageActions";
 
-  const fetchMessages = useCallback(async () => {
+const RecentActivities = () => {
+  const { messages } = useSelector((state) => state.messageReducer);
+  const dispatch = useDispatch();
+
+  const fetchMessages = async () => {
     const response = await fetch(`/api/messages/`);
     const data = await response.json();
-    dispatch({ type: "GET_MESSAGES", payload: data.messages });
-  }, [rooms]);
+    dispatch(setMessages(data.messages));
+  };
 
   useEffect(() => {
     fetchMessages();
-  }, [fetchMessages]);
+  }, []);
   return (
     <div className="activities">
       <h2>RECENT ACTIVITIES</h2>
       {messages?.map((message) => (
-        <div className="activities__box">
+        <div key={message._id} className="activities__box">
           <div className="activities__boxHeader roomListRoom__header">
             <Link
               to={`/profile/${message.user.username}`}

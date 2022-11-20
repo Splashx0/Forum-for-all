@@ -1,47 +1,44 @@
 import React, { useEffect, useState } from "react";
 import SearchIcon from "../icons/searchIcon.svg";
-import { useContext } from "react";
-import { RoomContext } from "../context/RoomContext";
+import { useDispatch } from "react-redux";
+import { setRooms } from "../redux/actions/roomActions";
 const Search = () => {
-  const { dispatch } = useContext(RoomContext);
+  const dispatch = useDispatch();
   const [searchedTerm, setSearchedTerm] = useState("");
-  const [rooms, setRooms] = useState([]);
+  const [roomsHere, setRoomsHere] = useState([]);
 
   useEffect(() => {
     const fetchRooms = async () => {
       const response = await fetch("/api/rooms");
       const data = await response.json();
-      setRooms(data.rooms);
+      setRoomsHere(data.rooms);
     };
     fetchRooms();
   }, []);
   useEffect(() => {
     let searchRooms = [];
     if (!searchedTerm) {
-      searchRooms = rooms;
+      searchRooms = roomsHere;
     } else {
-      searchRooms = rooms.filter(
+      searchRooms = roomsHere.filter(
         (room) =>
           room.topic.name.toLowerCase().includes(searchedTerm) ||
           room.name.toLowerCase().includes(searchedTerm) ||
           room.description.toLowerCase().includes(searchedTerm)
       );
     }
-    dispatch({ type: "GET_ROOMS", payload: searchRooms });
+    dispatch(setRooms(searchRooms));
   }, [searchedTerm]);
   const handleChange = (e) => {
     setSearchedTerm(e.target.value);
   };
+  console.log(searchedTerm);
 
   return (
     <form className="navbar_search" method="get" action="/">
       <label>
         <img src={SearchIcon} alt="search icon" />
-        <input
-          value={searchedTerm}
-          placeholder="Search for rooms..."
-          onChange={handleChange}
-        />
+        <input placeholder="Search for rooms..." onChange={handleChange} />
       </label>
     </form>
   );

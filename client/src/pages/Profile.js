@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import DeleteIcon from "../icons/deleteIcon.svg";
 import Avatar from "../icons/avatar.svg";
 import { useParams, Link } from "react-router-dom";
-import { useAuthContext } from "../hooks/useAuthContext";
-import { useContext } from "react";
-import { RoomContext } from "../context/RoomContext";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteRoom } from "../redux/actions/roomActions";
+
 const Profile = () => {
-  const { rooms, dispatch } = useContext(RoomContext);
-  const { user } = useAuthContext();
+  const { user } = useSelector((state) => state.userReducer);
+  const { rooms } = useSelector((state) => state.roomReducer);
+  const dispatch = useDispatch();
+
   const connectedUser = user?.username;
   const { id } = useParams();
   const [Profile, setProfile] = useState([]);
@@ -29,7 +31,7 @@ const Profile = () => {
       headers: { Authorization: `Bearer ${user?.token}` },
     });
     if (response.ok) {
-      dispatch({ type: "DELETE_ROOMS", payload: id });
+      dispatch(deleteRoom(id));
     }
   };
 
@@ -60,7 +62,7 @@ const Profile = () => {
                     {connectedUser === id ? (
                       <Link
                         to={`/profile/${Profile?.username}/edit`}
-                        class="btn btn--main btn--pill"
+                        className="btn btn--main btn--pill"
                       >
                         Edit profile
                       </Link>

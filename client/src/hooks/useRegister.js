@@ -1,9 +1,10 @@
-import { useAuthContext } from "./useAuthContext";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../redux/actions/userActions";
 
 export const useRegister = () => {
+  const dispatch = useDispatch();
   const [error, setError] = useState(null);
-  const { dispatch } = useAuthContext();
   const registerUser = async (username, email, password) => {
     const response = await fetch("/api/user/register", {
       method: "POST",
@@ -18,7 +19,7 @@ export const useRegister = () => {
       //save the user to local storage
       localStorage.setItem("user", JSON.stringify(json));
       //update the authContext state
-      dispatch({ type: "LOGIN", payload: json });
+      dispatch(loginUser(json));
     }
   };
 

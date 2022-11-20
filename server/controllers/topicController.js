@@ -2,7 +2,7 @@ const Topic = require("../models/topic");
 
 //GET topics
 const getTopics = async (req, res) => {
-  const topics = await Topic.find();
+  const topics = await Topic.find().populate("rooms");
   res.status(200).json({ topics });
 };
 

@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useContext } from "react";
-import { RoomContext } from "../context/RoomContext";
+import { useSelector, useDispatch } from "react-redux";
+import { setRooms } from "../redux/actions/roomActions";
+import { setTopics } from "../redux/actions/topicActions";
 const Topics = () => {
-  const { rooms, dispatch } = useContext(RoomContext);
-  const [topics, setTopics] = useState([]);
+  const { topics } = useSelector((state) => state.topicReducer);
+  const { rooms } = useSelector((state) => state.roomReducer);
+  const dispatch = useDispatch();
   const [allRooms, setAllRooms] = useState([]);
   useEffect(() => {
     const fetchTopics = async () => {
       const response = await fetch("/api/topics");
-      const topics = await response.json();
-      setTopics(topics.topics);
+      const data = await response.json();
+      dispatch(setTopics(data.topics));
     };
     fetchTopics();
-  }, [rooms]);
+  }, []);
+
   useEffect(() => {
     const fetchRooms = async () => {
       const response = await fetch("/api/rooms");
@@ -24,12 +27,12 @@ const Topics = () => {
   const handleTopics = (e) => {
     const value = e.target.value;
     if (value === "All") {
-      dispatch({ type: "GET_ROOMS", payload: allRooms });
+      dispatch(setRooms(allRooms));
     } else {
       const FiltredRoomsByTopic = allRooms.filter(
         (room) => room.topic.name === value
       );
-      dispatch({ type: "GET_ROOMS", payload: FiltredRoomsByTopic });
+      dispatch(setRooms(FiltredRoomsByTopic));
     }
   };
 

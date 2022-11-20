@@ -1,13 +1,14 @@
 import Logo from "../icons/logo.svg";
 import Avatar from "../icons/avatar.svg";
+//import Search from "./Search";
 import { Link } from "react-router-dom";
 import { useLogout } from "../hooks/useLogout";
-import { useAuthContext } from "../hooks/useAuthContext";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Search from "./Search";
 
 function NavBar() {
-  const { user } = useAuthContext();
+  const { user } = useSelector((state) => state.userReducer);
   const { logout } = useLogout();
   const [avatar, setAvatar] = useState("");
   const handleLogout = () => {

@@ -762,6 +762,30 @@ cursor: pointer;
     justify-content: flex-end;
     gap: 2rem;
 }
+.form__action .error{
+    position: absolute;
+    left: 37px;
+    padding: 10px;
+    font-size: 15px;
+    background: #f3eeee;
+    border: 1px solid #e7195a;
+    color:  #e7195a;
+    border-radius: 4px;
+    font-weight: 700;
+
+}
+.form__action .succeed{
+    position: absolute;
+    left: 37px;
+    padding: 10px;
+    font-size: 15px;
+    background: #7dd97f;
+    border: 1px solid #28e42b;
+    color:  #000000;
+    border-radius: 4px;
+    font-weight: 700;
+
+}
 .form__group label {
     font-size: 1rem;
     margin-bottom: 1rem;
@@ -829,3 +853,7 @@ cursor: pointer;
 .profile-page .roomList__header h2 {
     color: #696d97;
 }
+/*===========
+Error
+=======*/
+

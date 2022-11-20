@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import BackIcon from "../icons/backIcon.svg";
-import { useAuthContext } from "../hooks/useAuthContext";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import avatar from "../icons/avatar.svg";
+import { useSelector } from "react-redux";
+
 const EditProfile = () => {
-  const { user } = useAuthContext();
+  const { user } = useSelector((state) => state.userReducer);
   const { id } = useParams();
   const navigate = useNavigate();
   const [bio, setBio] = useState("");

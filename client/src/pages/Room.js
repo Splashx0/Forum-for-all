@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import BackIcon from "../icons/backIcon.svg";
 import { useParams, Link } from "react-router-dom";
-import { useAuthContext } from "../hooks/useAuthContext";
-import { MessagesContext } from "../context/MessagesContext";
-import { useContext } from "react";
 import { GetParticipantsNumber } from "../components/GetParticipantsNumber";
+import { useSelector, useDispatch } from "react-redux";
+import { createMessage, setMessages } from "../redux/actions/messageActions";
+
 const Room = () => {
-  const { messages, dispatch } = useContext(MessagesContext);
-  const { user } = useAuthContext();
+  const { user } = useSelector((state) => state.userReducer);
+  const { messages } = useSelector((state) => state.messageReducer);
+  const dispatch = useDispatch();
   const { id } = useParams();
   const [Room, setRoom] = useState([]);
   const [Body, setBody] = useState("");
@@ -24,7 +25,7 @@ const Room = () => {
     const fetchMessages = async () => {
       const response = await fetch(`/api/messages/${id}`);
       const data = await response.json();
-      dispatch({ type: "GET_MESSAGES", payload: data.messages });
+      dispatch(setMessages(data.messages));
     };
     fetchMessages();
   }, [messages.length]);
@@ -41,7 +42,7 @@ const Room = () => {
       body: JSON.stringify({ body: Body }),
     });
     const data = await response.json();
-    dispatch({ type: "CREATE_MESSAGE", payload: data.message });
+    dispatch(createMessage(data.message));
   };
   const handleChange = async (e) => {
     setBody(e.target.value);
@@ -70,7 +71,7 @@ const Room = () => {
                 href={`/profile/${Room.host?.username}`}
                 className="room__author"
               >
-                <div className="avatar ">
+                <div className="avatar">
                   <img src={`/uploads/${Room?.host?.profileImg}`} alt="user" />
                 </div>
                 <span>@{Room.host?.username}</span>
@@ -82,7 +83,7 @@ const Room = () => {
           <div className="room__conversation">
             <div className="threads ">
               {messages.map((message, key) => (
-                <div className="thread" key={key}>
+                <div className="thread" key={message._id}>
                   <div className="thread__top">
                     <div className="thread__author">
                       <Link
@@ -91,9 +92,8 @@ const Room = () => {
                       >
                         <div className="avatar ">
                           <img
-                            src={`/uploads/${message.user.profileImg}`}
+                            src={`/uploads/${message?.user.profileImg}`}
                             alt="user"
-                            loading="slow"
                           />
                         </div>
                         <span>@{message.user.username}</span>

@@ -14,7 +14,7 @@ const getMessages = async (req, res) => {
 const getMessagesOfRoom = async (req, res) => {
   const { id } = req.params;
   const messages = await Message.find({ room: id })
-    .populate("user")
+    .populate("user room")
     .sort({ createdAt: -1 });
   res.status(200).json({ messages });
 };

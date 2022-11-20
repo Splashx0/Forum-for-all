@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/user");
 const multer = require("multer");
 const { getProfile, editProfile } = require("../controllers/profileController");
 

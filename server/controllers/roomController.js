@@ -27,28 +27,36 @@ const createRoom = async (req, res) => {
   const host = req.user.username;
   const { name, description, topic } = req.body;
   const hostUser = await User.findOne({ username: host });
-
   const topicRequested = await Topic.findOne({ name: topic });
-  const room = await Room.create({
-    name,
-    description,
-    topic: topicRequested._id,
-    host: hostUser._id,
-    messages: [],
-  });
-
-  const topicUpdated = await Topic.updateOne(
-    { name: topic },
-    { $push: { rooms: room._id } }
-  );
-
-  const user = await User.updateOne(
-    { username: host },
-    {
-      $push: { rooms: room.id },
+  try {
+    if (!name || !description || !topic) {
+      throw Error("All fields must be filled ! ");
     }
-  );
-  res.status(200).json({ room });
+    if (!topicRequested) {
+      throw Error("Please choose a topic from the list !  ");
+    }
+    const room = await Room.create({
+      name,
+      description,
+      topic: topicRequested._id,
+      host: hostUser._id,
+      messages: [],
+    });
+    const topicUpdated = await Topic.updateOne(
+      { name: topic },
+      { $push: { rooms: room._id } }
+    );
+
+    const user = await User.updateOne(
+      { username: host },
+      {
+        $push: { rooms: room.id },
+      }
+    );
+    res.status(200).json({ room });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 };
 ////DELETE a room
 const deleteRoom = async (req, res) => {

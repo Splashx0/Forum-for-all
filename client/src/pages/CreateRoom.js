@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import BackIcon from "../icons/backIcon.svg";
-import { useContext } from "react";
-import { RoomContext } from "../context/RoomContext";
-import { useAuthContext } from "../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { createRoom } from "../redux/actions/roomActions";
 const CreateRoom = () => {
   const navigate = useNavigate();
-  const { user } = useAuthContext();
-  const { dispatch } = useContext(RoomContext);
+  const { user } = useSelector((state) => state.userReducer);
+  const dispatch = useDispatch();
   const [topics, setTopics] = useState();
+  const [error, setError] = useState(null);
+  const [succeed, setSucceed] = useState(null);
+
   const [RoomData, setRoomData] = useState({
     topic: "",
     name: "",
@@ -30,7 +32,7 @@ const CreateRoom = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    e.target.reset();
+    setError(null);
     const response = await fetch("/api/rooms", {
       method: "POST",
       headers: {
@@ -40,7 +42,16 @@ const CreateRoom = () => {
       body: JSON.stringify(RoomData),
     });
     const data = await response.json();
-    dispatch({ type: "CREATE_ROOMS", payload: data.room });
+    if (!response.ok) {
+      setError(data.error);
+    }
+    if (response.ok) {
+      dispatch(createRoom(data.room));
+      setSucceed("Room created");
+      setTimeout(() => {
+        navigate("/");
+      }, 1500);
+    }
   };
   const handleChange = (e) => {
     let name = e.target.name;
@@ -90,6 +101,8 @@ const CreateRoom = () => {
             ></textarea>
           </div>
           <div className="form__action">
+            {error && <div className="error">{error}</div>}
+            {succeed && <div className="succeed">{succeed}</div>}
             <button className="btn btn--dark" type="reset">
               Cancel
             </button>
