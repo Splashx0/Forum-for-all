@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import LoginIcon from "../icons/loginIcon.svg";
 import { useRegister } from "../hooks/useRegister";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const { error, registerUser } = useRegister();
@@ -60,9 +61,9 @@ const Register = () => {
         </form>
         <div className="auth__action">
           <p>Already Signed up ?</p>
-          <a href="/login" className="btn btn--link">
-            Login
-          </a>
+          <Link to="/login" className="btn btn--link">
+            Login{" "}
+          </Link>
         </div>
       </div>
     </div>

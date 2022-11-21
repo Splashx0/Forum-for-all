@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import LoginIcon from "../icons/loginIcon.svg";
+import { Link } from "react-router-dom";
 import { useLogin } from "../hooks/useLogin";
 
 const Login = () => {
@@ -52,9 +53,9 @@ const Login = () => {
 
         <div className="auth__action">
           <p>Haven't signed up yet?</p>
-          <a href="/register" className="btn btn--link">
+          <Link to="/register" className="btn btn--link">
             Sign Up
-          </a>
+          </Link>
         </div>
       </div>
     </div>

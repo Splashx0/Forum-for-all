@@ -27,3 +27,7 @@ app.use("/api/rooms", roomRoutes);
 app.use("/api/topics", topicRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/messages", messageRoutes);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
