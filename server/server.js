@@ -9,17 +9,22 @@ const profileRoutes = require("./routes/profileRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 require("dotenv").config();
 
-const cors = require("cors");
 //const dbURI = "mongodb+srv://splash:splash@blog.msufnqt.mongodb.net/blogdb";
 mongoose
-  .connect(process.env.MONGO_URI)
-  .then((result) => app.listen(process.env.PORT))
+  .connect(
+    process.env.MONGO_URI ||
+      "mongodb+srv://splash:splash@cluster0.1oixmrj.mongodb.net/forum"
+  )
+  .then((result) => app.listen(process.env.PORT || 8000))
   .catch((err) => console.log(err));
 
+app.get("/", (req, res) => {
+  res.send("Hello");
+});
+
 //middlewares
-app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded());
+//app.use(express.urlencoded());
 app.use(morgan("dev"));
 //app.use("/", filterTopicsRoutes);
 app.use("/api/user", authRoutes);
@@ -27,7 +32,3 @@ app.use("/api/rooms", roomRoutes);
 app.use("/api/topics", topicRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/messages", messageRoutes);
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
