@@ -9,12 +9,9 @@ const profileRoutes = require("./routes/profileRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 require("dotenv").config();
 
-//const dbURI = "mongodb+srv://splash:splash@blog.msufnqt.mongodb.net/blogdb";
 mongoose
   .connect(
-    process.env.MONGO_URI ||
-      "mongodb+srv://splash:splash@cluster0.1oixmrj.mongodb.net/forum"
-  )
+    process.env.MONGO_URI )
   .then((result) => app.listen(process.env.PORT || 8000))
   .catch((err) => console.log(err));
 
