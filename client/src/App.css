@@ -1,11 +1,12 @@
 
+
 .main{
+    min-height: 100vh;
     background-color: #2d2d39;
     color:#b2bdbd;
     margin: 0;
     padding: 0;
-    height: 150vh;
-    overflow: hidden;
+    overflow: hidden; 
 }
 a {
     color:#71c6dd;
@@ -13,7 +14,6 @@ a {
     text-decoration: none;
 }
 .container {
-    overflow: hidden;
     max-width: 100rem;
     width: 90%;
     margin: auto;
@@ -30,8 +30,7 @@ a {
     display: flex;
     padding: 0.3rem 0;
     gap: 5rem;
-}
-    
+}   
 .navbar_logo {
     padding: 0;
     display: flex;
@@ -42,15 +41,12 @@ a {
     height: 2.8rem;
     width: 2.8rem;
 }
-
 .navbar_logo h1 {
     font-weight: 700;
     font-size: 1.3rem;
     color: white;
     margin: 0;
 }
-
-
 .navbar_search>label {
     background-color:#51546e;
     padding: 6px;
@@ -89,7 +85,7 @@ a {
     font-weight: 500;
     color: #8b8b8b;
     position: absolute;
-    right:6.7rem;
+    right:2.3rem;
     top: 15px;
 }
 
@@ -104,7 +100,46 @@ a {
     margin: 0;
     cursor: pointer;
 }
+@media (max-width: 640px) {
 
+    .navbar .container {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.3rem 0;
+        margin: 0rem;
+    }
+    .navbar_logo {
+        padding:0 1.5rem;
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    .navbar_login .link {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        font-weight: 500;
+        color: #8b8b8b;
+        position: absolute;
+        right:2.3rem;
+        top: 15px;
+    }
+    
+    .navbar_login img {
+            height: 2.8rem;
+            width: 2.8rem;
+            border-radius: 50%;
+            border: 2px solid #71c6dd;
+        }
+    
+    .navbar_login p {
+        margin: 0;
+        cursor: pointer;
+    }
+ 
+    
+}
 /*==============================
 =>  Topics
 ================================*/
@@ -122,6 +157,7 @@ a {
 
 .topics__header> h2 {
     text-transform: uppercase;
+    margin-bottom:-2rem;
     font-weight: 00;
     color: #696d97;
     font-size: 18px;
@@ -135,7 +171,7 @@ a {
 .topics__list li  button{
     display: flex;
     justify-content:space-between;
-    margin-bottom: 2.5rem;
+    margin: 1.5rem  0rem;
     font-weight: 500;
     color: #b2bdbd;
     transition: all 0.3s ease-in-out;
@@ -148,7 +184,7 @@ a {
 
 .topics__list li button span {
     position: absolute;
-    right: 2rem;
+    right: 3rem;
     padding: 0.2rem 0.6rem;
     background-color: #3f4156;
     margin-left: 0;
@@ -158,11 +194,50 @@ a {
     letter-spacing: 1px;
 }
 
+@media (max-width: 850px) {
+    .topics{
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .topics__header> h2 {
+        margin-bottom:-2rem;
+        font-size: 1.1rem;
+    }        
+    .topics__list li  button{
+        margin: 1.5rem  0rem;
+    }    
+    .topics__list li button span {
+        position: absolute;
+        right:-0.8rem;
+    }
+}
+@media (max-width: 640px) {
+    .topics{
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .topics__header> h2 {
+        margin-bottom:-1rem;
+        text-align: center;
+        font-size: 30px;
+    }        
+    .topics__list li  button{
+        margin: 0.8rem;
+    }    
+    .topics__list li button span {
+        position: absolute;
+        right: 0rem;
+    }
+}
 /*==============================
 =>  Room List
 ================================*/
 .roomList{
-    width: 80%;
+    width: auto;
 }
 
 .roomList__header {
@@ -179,7 +254,8 @@ a {
     color:#e5e5e5;
     letter-spacing: 1px;
     font-size: 1rem;
-    
+    padding: 0rem;
+
 }
 
 .roomList__header p {
@@ -188,7 +264,7 @@ a {
     font-size: 0.9rem;
 }
 .roomList__header a{
-    position: absolute;
+   position: absolute;
     padding: 0.7rem;
     right: 0;
     top: 0;
@@ -198,6 +274,71 @@ a {
     width: 1.5rem;
     height: 1.5rem;
 }
+
+@media screen and(min-width: 640px) {
+    .roomList{
+        width: 90%;
+    }
+    
+    .roomList__header {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 0.3rem;
+    }
+    
+    .roomList__header h2 {
+        text-transform: uppercase;
+        font-weight: 500;
+        color:#e5e5e5;
+        letter-spacing: 1px;
+        font-size: 0.8rem;
+        
+    }
+    
+    .roomList__header p {
+        font-weight: 500;
+        color: #696d97;
+        font-size: 0.8rem;
+    }
+
+}
+@media (max-width: 640px) {
+    .roomList{
+        width: 100%;
+    }
+    
+    .roomList__header {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.3rem;
+    }
+  
+    .roomList__header h2 {
+        text-transform: uppercase;
+        font-weight: 500;
+        color:#e5e5e5;
+        padding: 0;
+        letter-spacing: 1px;
+        font-size: 0.8rem;   
+    }
+    .roomList__header p {
+        font-weight: 500;
+        color: #696d97;
+        font-size: 0.8rem;
+    }
+    .roomList__header img{
+
+        width: 1.3rem;
+        height: 1.3rem;
+        margin: 0.1rem;
+    }
+}
+
 
 /*========== Room List Room ==========*/
 
@@ -292,9 +433,72 @@ a {
     font-size: 0.8rem;
     
 }
+@media (max-width: 850px) {
+
+    .roomListRoom__header {
+        display: flex;
+        flex-direction: column;
+        align-items:start;
+    }
+    .roomListRoom__header >span {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+}
+@media  (max-width: 640px) {
+    
+    .roomListRoom {
+        margin-bottom: 1rem;
+        background-color: #3f4156;
+        border-radius: 1rem;
+        padding: 1rem 1.2rem;
+    }
+    
+    .roomListRoom__header {
+        display: flex;
+        align-items:start;
+    }
+    .roomListRoom__header >span {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+    .roomListRoom__author {
+        font-weight: 500;
+        gap: 0.5rem;
+    }
+    .roomListRoom__author img {
+        border-radius: 50%;
+        border: 2px solid #71c6dd;
+        height: 2.5rem;
+        width: 2.5rem;
+        object-fit:fill;
+    }
+    
+    .roomListRoom__actions svg {
+        fill: #71c6dd;
+        width: 1.6rem;
+        height: 1.6rem;
+    }
+    
+    .roomListRoom__content {
+        margin: 0.65rem 0;
+    }
+    
+    .roomListRoom__content a {
+        font-size: 1.3rem;
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+        color: #e5e5e5;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    }
+
 /*==============================
 =>  buttons
 ================================*/
+
 .btn {
     background-color: transparent;
     border: none;
@@ -322,9 +526,39 @@ a {
     background-color: #696d97;
     color:#e5e5e5;
 }
+@media (max-width: 640px) {
+ .btn {
+    background-color: transparent;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    cursor: pointer;
+    transition: all ease-in-out 0.3s;
+    padding: 0.5rem 0.5rem;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px 1px rgb(0 0 0 / 15%);
+    font-weight: 500;
+}
+.btn--main {
+    background-color: #71c6dd;
+    color: #3f4156;
+}
+.btn--link {
+    border-radius: 0;
+    padding: 0;
+    color: #71c6dd;
+    box-shadow: none;
+}
+.btn--dark {
+    background-color: #696d97;
+    color:#e5e5e5;
+}   
+}
 /*==============================
 =>  Activities
 ================================*/
+
 .activities {
     background-color: #3f4156;
     border-radius: 5px;
@@ -332,7 +566,7 @@ a {
     height: auto;
     width: 300px;
     position: absolute;
-    right:6.2rem;
+    right:1.8rem;
 }
 .activities > h2 {
     background-color: #696d97;
@@ -392,6 +626,117 @@ a {
     width: 7rem;
     object-fit:fill;
 }
+
+@media (max-width: 1113px) {
+    
+    .activities {
+        background-color: #3f4156;
+        border-radius: 5px;
+        overflow: hidden;
+        height: auto;
+        width:25%;
+        position: absolute;
+        right:1rem;
+    } 
+    .activities > h2 {
+        background-color: #696d97;
+        text-transform: uppercase;
+        font-weight: 500;
+        padding: 0.9rem 1.2rem;
+        color: #e5e5e5;
+        letter-spacing: 1px;
+        font-size: 0.73rem;
+    }
+   
+    .activities__boxRoomContent {
+        background: #2d2d39;
+        padding: 0.4rem;
+        border-radius: 5px;
+        margin-top: 1rem;
+        margin-left: -4.2rem;
+    }
+    .activities__box {
+        margin: 0.7rem ;
+        padding: 0.8rem;
+        border: 2px solid #51546e;
+        border-radius: 5px;
+    }
+    
+    .activities__boxHeader p {
+        font-size: 1rem;
+        line-height: 1.3;
+        margin-bottom: 3px;
+    }
+    
+    .activities__boxHeader p span {
+        color: #8b8b8b;
+        font-size: 0.8rem;
+        display: block;
+    }
+    
+    .activities__boxContent {
+        margin-left: 4.1rem;
+        font-size: 0.9rem;
+    }
+    
+    .activities__boxContent a:hover {
+        text-decoration: underline;
+        color: #71c6dd;
+    
+    }
+    .activities__boxRoomContent {
+        background: #2d2d39;
+        padding: 0.5rem;
+        border-radius: 5px;
+        margin-top: 1rem;
+        margin-left: -4.2rem;
+    }
+    .activities__boxContent p {
+        font-size: 0.9rem;
+        margin-left: -15px;
+    
+    }
+    .activities__boxHeader img{
+        
+        border-radius: 50%;
+        border: 2px solid #71c6dd;
+        height: 2rem;
+        width: 2rem;
+        object-fit:fill;
+    }
+
+}
+@media (max-width: 640px) {
+    
+    .activities {
+        background-color: #3f4156;
+        border-radius: 5px;
+        overflow: hidden;
+        height: auto;
+        width:78%;
+        position: absolute;
+        right:auto;
+        left: auto;
+    } 
+    .activities > h2 {
+        background-color: #696d97;
+        text-transform: uppercase;
+        font-weight: 500;
+        padding: 0.9rem 1.2rem;
+        color: #e5e5e5;
+        letter-spacing: 1px;
+        font-size: 0.7rem;
+    }
+   
+    .activities__boxRoomContent {
+        background: #2d2d39;
+        padding: 0.4rem;
+        border-radius: 5px;
+        margin-top: 1rem;
+        margin-left: -4.2rem;
+    }
+
+}
 /*==============================
 =>  Room
 ================================*/
@@ -413,6 +758,7 @@ a {
 }
 .participants {
     margin-top: 2rem;
+    margin-bottom: 2rem;
     width: 23%;
     background: #3f4156;
     max-height: 87.5vh;
@@ -531,11 +877,11 @@ a {
     display: inline-block;
     font-size: 0.9rem;
     border-radius: 1.5rem;
-    margin: 0.5rem 0 0 0;
+    margin: 0rem 2.5rem 0 0;
 }
 
 .room__conversation {
-    margin-top: 1rem;
+    margin-top: 0rem;
     margin-bottom: 4rem;
     height: 64%;
 }
@@ -551,13 +897,14 @@ a {
 
 .thread {
     border-left: 2px solid #3f4156;
-    padding: 2rem 2rem 0.5rem 2rem;
+    padding: 2rem 0rem 0.5rem 2rem;
 }
 
   
 .thread__author {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 1.5rem;
     font-size: 1rem;
 }
@@ -645,13 +992,107 @@ a {
     color: #71c6dd;
     font-weight: 1.4rem;
 }
+@media (max-width: 1198px) {
+    .room_container {
+        overflow: hidden;
+        width: 90%;
+        margin: auto;
+        display: flex;
+        justify-content:space-between;
+    }
+    .room{
+        margin-top: 2rem;
+        background: #3f4156;
+        max-height: 87.5vh;
+        width: 73%;
+        border-radius: 0.7rem;
+        overflow: hidden;
+        position: relative;
+    }
+    .participants {
+        margin-top: 2rem;
+        width: 28%;
+        background: #3f4156;
+        max-height: 87.5vh;
+        border-radius: 0.7rem;
+        overflow: hidden;
+        position: relative;
+        margin-left: 1rem;
+    }
+    .room__topLeft h3,.participants__top {
+    margin: 0;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #e5e5e5;
+}
+}
+@media (max-width: 850px) {
+    .room_container {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        width: 90%;
+        margin: auto;
 
+    }
+    .room{
+        margin-top: 2rem;
+        background: #3f4156;
+        max-height: 87.5vh;
+        width:auto;
+        border-radius: 0.7rem;
+        overflow: hidden;
+        position: relative;
+    }
+    .room__info span {
+        color: #8b8b8b;
+        font-weight: 500;
+        font-size: 1rem;
+        display: block;
+        margin-right:1.5rem;
+    }
+    .room__topics {
+        padding: 0.3rem 1rem;
+        background: #696d97;
+        color: #e5e5e5;
+        display: inline-block;
+        font-size: 0.9rem;
+        border-radius: 1.5rem;
+        margin: 0rem 2.5rem 0 0;
+    }
+      
+.thread__author {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1rem;
+}
+    .participants {
+        margin-top: 1rem;
+        margin-left: 0;
+        width:auto;
+        background: #3f4156;
+        height:10rem;
+        border-radius: 0.7rem;
+        overflow: hidden;
+    }
+}
+@media (max-width: 495px) {
+    .room__info span {
+        color: #8b8b8b;
+        font-weight: 500;
+        font-size: 1rem;
+        display: block;
+        margin-right:1.5rem;
+    }
+}
 /*========== Layout Box ==========*/
 
 .layout__box {
     width: 40%;
     position: absolute;
-    top: 40%;
+    top: 45%;
     left: 45%;
     transform: translate(-50%, -46%);
     background-color:#3f4156;
@@ -735,6 +1176,21 @@ cursor: pointer;
     margin-top: 1.2rem;
     text-align: center;
     margin-bottom: -1.3rem;
+}
+@media (max-width:640px) {
+    .layout__box {
+        width: 80%;
+        position: absolute;
+        top: 45%;
+        left:33%;
+        transform: translate(-50%, -46%);
+        background-color:#3f4156;
+        border-radius: 1rem;
+        box-shadow: 1px 1px 6px 3px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        margin: 5rem;
+    }
+    
 }
 
 /*==============================
@@ -854,6 +1310,19 @@ cursor: pointer;
     color: #696d97;
 }
 /*===========
-Error
+Home
 =======*/
-
+.parent {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr;
+    }
+@media (max-width: 640px) {
+    .parent {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(auto, 1fr);
+   
+        }
+    
+}

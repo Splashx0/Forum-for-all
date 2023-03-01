@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+/*import React, { useEffect, useState } from "react";
 import SearchIcon from "../icons/searchIcon.svg";
 import { useDispatch } from "react-redux";
 import { setRooms } from "../redux/actions/roomActions";
@@ -9,7 +9,7 @@ const Search = () => {
 
   useEffect(() => {
     const fetchRooms = async () => {
-      const response = await fetch("/api/rooms");
+      const response = await fetch("https://it-forum4.herokuapp.com/api/rooms");
       const data = await response.json();
       setRoomsHere(data.rooms);
     };
@@ -45,3 +45,4 @@ const Search = () => {
 };
 
 export default Search;
+*/

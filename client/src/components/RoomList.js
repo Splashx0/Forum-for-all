@@ -37,16 +37,18 @@ const RoomList = () => {
   return (
     <div className="roomList">
       <div className="roomList__header">
-        <div>
+        <div className="num">
           <h2>Study Rooms</h2>
           <p>{rooms?.length} Rooms available</p>
         </div>
-        {user ? (
-          <Link className="btn btn--main" to="/create">
-            <img src={AddRoom} alt="add room" />
-            Create Room
-          </Link>
-        ) : null}
+        <div>
+          {user ? (
+            <Link className="btn btn--main" to="/create">
+              <img src={AddRoom} alt="add room" />
+              Create
+            </Link>
+          ) : null}
+        </div>
       </div>
       {rooms?.map((room) => {
         return (
@@ -61,7 +63,6 @@ const RoomList = () => {
                 </div>
                 <span>@{room.host.username}</span>
               </Link>
-
               <span>{room.createdAt}</span>
             </div>
             <div className="roomListRoom__content">
