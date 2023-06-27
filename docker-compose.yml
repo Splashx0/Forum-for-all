@@ -17,7 +17,7 @@ services:
       - "8000:8000"
     environment:
       MONGO_URI: mongodb://mongo_db/study
-      SECRET: splash secret
+      SECRET: secret
       PORT: 8000
     networks:
       - mern    
