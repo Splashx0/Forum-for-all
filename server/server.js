@@ -12,7 +12,7 @@ require("dotenv").config();
 mongoose
   .connect(
     process.env.MONGO_URI )
-  .then((result) => app.listen(process.env.PORT || 8000))
+  .then((result) => app.listen(process.env.PORT ))
   .catch((err) => console.log(err));
 
 app.get("/", (req, res) => {
