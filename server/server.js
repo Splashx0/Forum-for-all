@@ -11,13 +11,10 @@ require("dotenv").config();
 
 mongoose
   .connect(
-    process.env.MONGO_URI )
-  .then((result) => app.listen(process.env.PORT ))
+    process.env.MONGO_URI ||"mongodb://localhost:27017/study")
+  .then((result) => app.listen(process.env.PORT||8000 ))
   .catch((err) => console.log(err));
 
-app.get("/", (req, res) => {
-  res.send("Hello");
-});
 
 //middlewares
 app.use(express.json());
