@@ -11,28 +11,13 @@ const messageRoutes = require("./routes/messageRoutes");
 require("dotenv").config();
 
 mongoose
-<<<<<<< HEAD
-<<<<<<< HEAD
-  .connect(
-    process.env.MONGO_URI ||"mongodb://localhost:27017/study")
-  .then((result) => app.listen(process.env.PORT||8000 ))
-  .catch((err) => console.log(err));
-
-
-=======
-=======
->>>>>>> b9d30bdb7eda7c0a073a91cfaf623f13044ab404
   .connect(process.env.MONGO_URI)
   .then((result) => {app.listen(process.env.PORT)
     console.log("Connected to db server")
   })
-<<<<<<< HEAD
-=======
 
->>>>>>> b9d30bdb7eda7c0a073a91cfaf623f13044ab404
   .catch((err) => console.log(err));
 
->>>>>>> dev
 //middlewares
 /*const corsOptions = {
   origin: "*",
