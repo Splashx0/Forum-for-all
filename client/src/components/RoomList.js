@@ -81,7 +81,8 @@ const RoomList = () => {
                 >
                   <img src={DeleteIcon} alt="usersJoinIcon" />
                 </button>
-              ) : null}
+              ) :               
+                null}
             </div>
           </div>
         );
