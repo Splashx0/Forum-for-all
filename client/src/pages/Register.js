@@ -32,11 +32,11 @@ const Register = () => {
         <h2 className="auth__tagline">Find your study partner</h2>
         <form className="form" onSubmit={handleSubmit}>
           <div className=" form__group">
-            <label for="email">Email</label>
+            <label htmlFor="email">Email</label>
             <input id="email" name="email" type="email" onChange={saveData} />
           </div>
           <div className=" form__group">
-            <label for="username">Username</label>
+            <label htmlFor="username">Username</label>
             <input
               id="username"
               name="username"
@@ -45,7 +45,7 @@ const Register = () => {
             />
           </div>
           <div className="form__group">
-            <label for="password">Password</label>
+            <label htmlFor="password">Password</label>
             <input
               id="password"
               name="password"

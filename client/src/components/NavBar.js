@@ -1,11 +1,9 @@
 import Logo from "../icons/logo.svg";
 import Avatar from "../icons/avatar.svg";
-//import Search from "./Search";
 import { Link } from "react-router-dom";
 import { useLogout } from "../hooks/useLogout";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Search from "./Search";
 
 function NavBar() {
   const { user } = useSelector((state) => state.userReducer);
@@ -25,40 +23,42 @@ function NavBar() {
       });
       const data = await response.json();
       setAvatar(data?.user?.profileImg);
+      console.log(data.user);
     };
     fetchProfile();
   }, [user]);
 
   return (
     <nav className="navbar">
-      <div className="container ">
+      <div className="container">
         <Link to="/">
           <div className="navbar_logo">
             <img src={Logo} alt="logo" />
             <h1>IT Forum</h1>
           </div>
         </Link>
-        <Search />
-        {user ? (
-          <div className="navbar_login">
-            <div className="link">
-              <Link to={`/profile/${user.username}/`}>
-                <img
-                  src={avatar ? `/uploads/${avatar}` : Avatar}
-                  alt="avatar"
-                />
-              </Link>
-              <p onClick={handleLogout}>Logout</p>
+        <div>
+          {user ? (
+            <div className="navbar_login">
+              <div className="link">
+                <Link to={`/profile/${user.username}/`}>
+                  <img
+                    src={avatar ? `/uploads/${avatar}` : Avatar}
+                    alt="avatar"
+                  />
+                </Link>
+                <p onClick={handleLogout}>Logout</p>
+              </div>
             </div>
-          </div>
-        ) : (
-          <div className="navbar_login">
-            <Link to="/login" className="link">
-              <img src={Avatar} alt="avatar" />
-              <p>Login</p>
-            </Link>
-          </div>
-        )}
+          ) : (
+            <div className="navbar_login">
+              <Link to="/login" className="link">
+                <img src={Avatar} alt="avatar" />
+                <p>Login</p>
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
     </nav>
   );

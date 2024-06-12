@@ -13,7 +13,7 @@ const register = async (req, res) => {
   try {
     const user = await User.register(username, email, password);
     const token = createToken(user._id, user.username);
-    res.status(200).json({ username: user.userrame, token });
+    res.status(200).json({ username: user.username, token });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

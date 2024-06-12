@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteRoom, setRooms } from "../redux/actions/roomActions";
 import { deleteMessages } from "../redux/actions/messageActions";
 import { updateTopics } from "../redux/actions/topicActions";
+import Avatar from "../icons/avatar.svg";
+
 
 const RoomList = () => {
   const { user } = useSelector((state) => state.userReducer);
@@ -37,23 +39,25 @@ const RoomList = () => {
   return (
     <div className="roomList">
       <div className="roomList__header">
-        <div>
+        <div className="num">
           <h2>Study Rooms</h2>
           <p>{rooms?.length} Rooms available</p>
         </div>
-        {user ? (
-          <Link className="btn btn--main" to="/create">
-            <img src={AddRoom} alt="add room" />
-            Create Room
-          </Link>
-        ) : null}
+        <div>
+          {user ? (
+            <Link className="btn btn--main" to="/create">
+              <img src={AddRoom} alt="add room" />
+              Create
+            </Link>
+          ) : null}
+        </div>
       </div>
       {rooms?.map((room) => {
         return (
           <div key={room._id} className="roomListRoom">
             <div className="roomListRoom__header">
               <Link
-                to={`/profile/${room.host.username}`}
+                to={`/profile/${room?.host?.username}`}
                 className="roomListRoom__author"
               >
                 <div>
@@ -61,7 +65,6 @@ const RoomList = () => {
                 </div>
                 <span>@{room.host.username}</span>
               </Link>
-
               <span>{room.createdAt}</span>
             </div>
             <div className="roomListRoom__content">
