@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import LoginIcon from "../icons/loginIcon.svg";
 
 const Addtopic = () => {

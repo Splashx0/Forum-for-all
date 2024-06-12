@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { createRoom } from "../redux/actions/roomActions";
 const CreateRoom = () => {
   const navigate = useNavigate();
-  const { user } = useSelector((state) => state.userReducer);
+  const { user } = useSelector((state) => state?.userReducer);
+  const  t  = useSelector((state) => state?.topicReducer?.topics);
+
+  console.log(t)
   const dispatch = useDispatch();
   const [topics, setTopics] = useState();
   const [error, setError] = useState(null);
@@ -70,8 +73,8 @@ const CreateRoom = () => {
         </div>
         <div className="layout__body_room">
           <form method="post" className="form" onSubmit={handleSubmit}>
-            <div class="form__group">
-              <label>Enter a Topic</label>
+            <div className="form__group">
+              <label>Choose a Topic</label>
               <input
                 type="text"
                 name="topic"

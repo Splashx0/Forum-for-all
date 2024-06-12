@@ -12,7 +12,7 @@ services:
 
   back:
     build: ./server
-    restart: always
+    restart: always    //restart container if stopped
     ports:
       - "8000:8000"
     environment:

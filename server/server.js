@@ -9,11 +9,12 @@ const profileRoutes = require("./routes/profileRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 //const cors = require("cors");
 require("dotenv").config();
-//"mongodb+srv://splash:splash@cluster0.1oixmrj.mongodb.net/forum"
-//"mongodb://localhost:27017/study"
+
 mongoose
   .connect(process.env.MONGO_URI)
-  .then((result) => app.listen(process.env.PORT))
+  .then((result) => {app.listen(process.env.PORT)
+    console.log("Connected to db server")
+  })
   .catch((err) => console.log(err));
 
 //middlewares
@@ -24,8 +25,13 @@ mongoose
 };
 app.use(cors(corsOptions));*/
 //app.use(cors());
+app.get('/health',(req,res)=>{
+  res.send('fine , working !');
+})
+
 app.use(express.json());
 app.use(morgan("dev"));
+
 app.use("/api/user", authRoutes);
 app.use("/api/rooms", roomRoutes);
 app.use("/api/topics", topicRoutes);

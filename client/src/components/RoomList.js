@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteRoom, setRooms } from "../redux/actions/roomActions";
 import { deleteMessages } from "../redux/actions/messageActions";
 import { updateTopics } from "../redux/actions/topicActions";
+import Avatar from "../icons/avatar.svg";
+
 
 const RoomList = () => {
   const { user } = useSelector((state) => state.userReducer);
@@ -55,7 +57,7 @@ const RoomList = () => {
           <div key={room._id} className="roomListRoom">
             <div className="roomListRoom__header">
               <Link
-                to={`/profile/${room.host.username}`}
+                to={`/profile/${room?.host?.username}`}
                 className="roomListRoom__author"
               >
                 <div>
