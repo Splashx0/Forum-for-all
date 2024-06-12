@@ -5,16 +5,10 @@ import Topics from "../components/Topics";
 
 const Home = () => {
   return (
-    <div className="container mt-4 row">
-      <div className="col-2 ">
+    <div className="container mt-4 row parent ">
         <Topics />
-      </div>
-      <div className="col-8">
         <RoomList />
-      </div>
-      <div className="col-2">
         <RecentActivities />
-      </div>
     </div>
   );
 };

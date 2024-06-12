@@ -27,10 +27,7 @@ const RecentActivities = () => {
               className="roomListRoom__author"
             >
               <div>
-                <img
-                  src={`/uploads/${message.user.profileImg}`}
-                  alt="user icon"
-                />
+                <img src={`/uploads/${message.user.profileImg}`} alt="user" />
               </div>
               <p>
                 {message.user.username}

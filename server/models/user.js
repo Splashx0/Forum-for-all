@@ -44,9 +44,9 @@ userSchema.statics.register = async function (username, email, password) {
   if (!validator.isEmail(email)) {
     throw Error("Email not valid");
   }
-  if (!validator.isStrongPassword(password)) {
+  /*if (!validator.isStrongPassword(password)) {
     throw Error("Password not strong enough");
-  }
+  }*/
   const exists = await this.findOne({ email });
   if (exists) {
     throw Error("Email already in use");
@@ -71,7 +71,7 @@ userSchema.statics.login = async function (email, password) {
   }
   const user = await this.findOne({ email });
   if (!user) {
-    throw Error("Incorrect email");
+    throw Error("Incorrect email or password");
   }
   const auth = await bcrypt.compare(password, user.password);
   if (!auth) {

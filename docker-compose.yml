@@ -1,0 +1,45 @@
+version: '3'
+services:
+  mongo_db:
+    image: mongo:4.4.6
+    restart: always
+    ports:
+      - "27017:27017"
+    networks:
+      - mern  
+    volumes:
+      - mongo_db:/data/db
+
+  back:
+    build: ./server
+    restart: always    //restart container if stopped
+    ports:
+      - "8000:8000"
+    environment:
+      MONGO_URI: mongodb://mongo_db/study
+      SECRET: secret
+      PORT: 8000
+    networks:
+      - mern    
+    depends_on:
+      - mongo_db
+
+  front:
+    build: ./client
+    restart: always
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    networks:
+      - mern  
+    depends_on:
+      - back
+
+
+networks:
+  mern:
+    driver: bridge
+
+volumes:
+  mongo_db:

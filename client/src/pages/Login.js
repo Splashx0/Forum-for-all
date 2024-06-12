@@ -5,20 +5,16 @@ import { useLogin } from "../hooks/useLogin";
 
 const Login = () => {
   const { login, error } = useLogin();
-  const [UserData, setUserData] = useState({
-    email: "",
-    password: "",
-  });
+  const [userData, setUserData] = useState({ email: "", password: "" });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login(UserData.email, UserData.password);
+    await login(userData.email, userData.password);
   };
 
-  const saveData = (e) => {
-    let name = e.target.name;
-    let value = e.target.value;
-    setUserData({ ...UserData, [name]: value });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUserData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   return (
@@ -29,23 +25,32 @@ const Login = () => {
       <div className="layout__body">
         <h2 className="auth__tagline">Find your study partner</h2>
 
-        <form className="form" method="post" onSubmit={handleSubmit}>
-          <div className=" form__group">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="text" onChange={saveData} />
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="form__group">
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              value={userData.email}
+              onChange={handleInputChange}
+              required
+            />
           </div>
           <div className="form__group">
-            <label for="password">Password</label>
+            <label htmlFor="password">Password</label>
             <input
               id="password"
               name="password"
               type="password"
-              onChange={saveData}
+              value={userData.password}
+              onChange={handleInputChange}
+              required
             />
           </div>
 
-          <button className="btn btn--main" onClick={Login} type="submit">
-            <img src={LoginIcon} alt="login icon" />
+          <button className="btn btn--main" type="submit">
+            <img src={LoginIcon} alt="login icon" className="icon" />
             Login
           </button>
           {error && <div className="error">{error}</div>}

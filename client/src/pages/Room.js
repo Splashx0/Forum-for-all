@@ -77,8 +77,10 @@ const Room = () => {
                 <span>@{Room.host?.username}</span>
               </a>
             </div>
-            <div className="room__details">{Room.description}</div>
-            <span className="room__topics">{Room.topic?.name}</span>
+            <div className="d-flex align-items-center justify-content-between ">
+              <div className="">{Room.description}</div>
+              <span className="room__topics">{Room.topic?.name}</span>
+            </div>
           </div>
           <div className="room__conversation">
             <div className="threads ">

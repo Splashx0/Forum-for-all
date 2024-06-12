@@ -24,7 +24,7 @@ const editProfile = async (req, res) => {
     { username: id },
     {
       $set: {
-        profileImg: req.file.originalname,
+        profileImg: req.file?.originalname,
         bio,
       },
     }
