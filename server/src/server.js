@@ -2,11 +2,11 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-const authRoutes = require("./routes/authRoutes");
-const roomRoutes = require("./routes/roomRoutes");
-const topicRoutes = require("./routes/topicRoutes");
-const profileRoutes = require("./routes/profileRoutes");
-const messageRoutes = require("./routes/messageRoutes");
+const authRoutes = require("../routes/authRoutes");
+const roomRoutes = require("../routes/roomRoutes");
+const topicRoutes = require("../routes/topicRoutes");
+const profileRoutes = require("../routes/profileRoutes");
+const messageRoutes = require("../routes/messageRoutes");
 //const cors = require("cors");
 require("dotenv").config();
 
