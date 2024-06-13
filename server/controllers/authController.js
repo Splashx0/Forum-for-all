@@ -1,9 +1,9 @@
-import { register as _register, login as _login } from "../models/user";
-import { sign } from "jsonwebtoken";
+const User = require("../models/user");
+const jwt = require("jsonwebtoken");
 
 const maxAge = 3 * 24 * 60 * 60;
 const createToken = (_id, username) => {
-  return sign({ _id, username }, process.env.SECRET, {
+  return jwt.sign({ _id, username }, process.env.SECRET, {
     expiresIn: maxAge,
   });
 };
@@ -18,7 +18,7 @@ const register = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
-//Login
+//Logino
 const login = async (req, res) => {
   const { email, password } = req.body;
   try {
