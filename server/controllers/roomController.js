@@ -1,5 +1,5 @@
 const Room = require("../models/room");
-const User = require("../models/user");
+const User = require("../models/user").default;
 const Message = require("../models/message");
 const Topic = require("../models/topic");
 const mongoose = require("mongoose");

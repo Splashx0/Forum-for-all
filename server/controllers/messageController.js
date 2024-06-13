@@ -1,6 +1,6 @@
 const Message = require("../models/message");
 const Room = require("../models/room");
-const User = require("../models/user");
+const User = require("../models/user").default;
 
 //Get all messages
 const getMessages = async (req, res) => {
