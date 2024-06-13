@@ -33,7 +33,7 @@ app.get('/health',(req,res)=>{
 app.use(express.json());
 app.use(morgan("dev"));
 
-app.use("/api/user", authRoutes);
+//app.use("/api/user", authRoutes);
 app.use("/api/rooms", roomRoutes);
 app.use("/api/topics", topicRoutes);
 app.use("/api/profile", profileRoutes);
