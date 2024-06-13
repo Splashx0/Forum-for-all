@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 const Schema = mongoose.Schema;
-const mongooseDateFormat = require("mongoose-date-format");
+import mongooseDateFormat from "mongoose-date-format";
 
 const roomSchema = new Schema(
   {
@@ -33,5 +33,4 @@ const roomSchema = new Schema(
 );
 roomSchema.plugin(mongooseDateFormat);
 
-const Room = mongoose.model("room", roomSchema); // pluriel and search for it in db
-module.exports = Room;
+export const Room = mongoose.model("room", roomSchema); // pluriel and search for it in db

@@ -1,9 +1,9 @@
-const Message = require("../models/message");
-const Room = require("../models/room");
-const User = require("../models/user").default;
+import { Room } from "../models/room.js";
+import { Message } from "../models/message.js";
+import { User } from "../models/user.js";
 
 //Get all messages
-const getMessages = async (req, res) => {
+export const getMessages = async (req, res) => {
   const messages = await Message.find()
     .populate("user room")
     .sort({ createdAt: -1 });
@@ -11,7 +11,7 @@ const getMessages = async (req, res) => {
 };
 
 //Get all messages of a single room
-const getMessagesOfRoom = async (req, res) => {
+export const getMessagesOfRoom = async (req, res) => {
   const { id } = req.params;
   const messages = await Message.find({ room: id })
     .populate("user room")
@@ -20,7 +20,7 @@ const getMessagesOfRoom = async (req, res) => {
 };
 
 //Create a message
-const createMessage = async (req, res) => {
+export const createMessage = async (req, res) => {
   const { username } = req.user;
   const { id } = req.params;
   const { body } = req.body;
@@ -39,4 +39,3 @@ const createMessage = async (req, res) => {
   res.status(200).json({ message });
 };
 
-module.exports = { getMessages, getMessagesOfRoom, createMessage };

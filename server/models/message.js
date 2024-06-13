@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+import mongooseDateFormat from "mongoose-date-format";
 const Schema = mongoose.Schema;
-const mongooseDateFormat = require("mongoose-date-format");
 
 const messageSchema = new Schema(
   {
@@ -21,5 +21,6 @@ const messageSchema = new Schema(
 );
 messageSchema.plugin(mongooseDateFormat); // format: YYYY-MM-DD HH:mm:ss
 
-const Message = mongoose.model("message", messageSchema); // pluriel and search for it in db
-module.exports = Message;
+export const Message = mongoose.model("message", messageSchema); // pluriel and search for it in db
+
+

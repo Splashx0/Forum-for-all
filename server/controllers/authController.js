@@ -1,5 +1,5 @@
-const User = require("../models/user").default;
-const jwt = require("jsonwebtoken");
+import { User } from '../models/user.js';
+import jwt from 'jsonwebtoken';
 
 const maxAge = 3 * 24 * 60 * 60;
 const createToken = (_id, username) => {
@@ -7,8 +7,8 @@ const createToken = (_id, username) => {
     expiresIn: maxAge,
   });
 };
-//Register
-const register = async (req, res) => {
+
+export const register = async (req, res) => {
   const { username, email, password } = req.body;
   try {
     const user = await User.register(username, email, password);
@@ -18,8 +18,8 @@ const register = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
-//Login
-const login = async (req, res) => {
+
+export const login = async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.login(email, password);
@@ -29,5 +29,3 @@ const login = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
-
-module.exports = { register, login };

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const topicSchema = new Schema(
@@ -17,5 +17,4 @@ const topicSchema = new Schema(
   { timestamps: true }
 );
 
-const Topic = mongoose.model("topic", topicSchema); // pluriel and search for it in db
-module.exports = Topic;
+export const Topic = mongoose.model("topic", topicSchema); // pluriel and search for it in db

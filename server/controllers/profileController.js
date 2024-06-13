@@ -1,8 +1,6 @@
-const express = require("express");
-const User = require("../models/user").default;
-
+import { User } from "../models/user.js";
 //Get profile
-const getProfile = async (req, res) => {
+export const getProfile = async (req, res) => {
   const { id } = req.params;
 
   const user = await User.findOne({ username: id }).populate({
@@ -16,7 +14,7 @@ const getProfile = async (req, res) => {
 };
 
 //Edit Profile
-const editProfile = async (req, res) => {
+export const editProfile = async (req, res) => {
   const { id } = req.params;
   const { bio } = req.body;
 
@@ -31,5 +29,3 @@ const editProfile = async (req, res) => {
   );
   res.status(200).json({ editUser });
 };
-
-module.exports = { getProfile, editProfile };

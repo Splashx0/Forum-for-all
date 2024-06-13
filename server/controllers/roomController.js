@@ -1,11 +1,11 @@
-const Room = require("../models/room");
-const User = require("../models/user").default;
-const Message = require("../models/message");
-const Topic = require("../models/topic");
-const mongoose = require("mongoose");
+import { Room } from "../models/room.js";
+import { User } from "../models/user.js";
+import { Topic } from "../models/topic.js";
+import { Message } from "../models/message.js";
+import mongoose from "mongoose";
 
 //GET all rooms
-const getRooms = async (req, res) => {
+export const getRooms = async (req, res) => {
   const rooms = await Room.find()
     .populate("host topic messages")
     .sort({ createdAt: -1 });
@@ -13,7 +13,7 @@ const getRooms = async (req, res) => {
 };
 
 ///GET a single room
-const getRoom = async (req, res) => {
+export const getRoom = async (req, res) => {
   const { id } = req.params;
   const room = await Room.findById(id).populate("host topic");
   if (!room) {
@@ -23,7 +23,7 @@ const getRoom = async (req, res) => {
 };
 
 //Create a new room
-const createRoom = async (req, res) => {
+export const createRoom = async (req, res) => {
   const host = req.user.username;
   const { name, description, topic } = req.body;
   const hostUser = await User.findOne({ username: host });
@@ -59,7 +59,7 @@ const createRoom = async (req, res) => {
   }
 };
 ////DELETE a room
-const deleteRoom = async (req, res) => {
+export const deleteRoom = async (req, res) => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({ error: "Not a room" });
@@ -73,11 +73,4 @@ const deleteRoom = async (req, res) => {
   }
 
   res.status(200).json(room);
-};
-
-module.exports = {
-  getRooms,
-  getRoom,
-  createRoom,
-  deleteRoom,
 };

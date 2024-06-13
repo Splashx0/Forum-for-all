@@ -1,22 +1,12 @@
-const express = require("express");
-const router = express.Router();
-const requireAuth = require("../middleware/requireAuth");
-const {
-  getMessages,
-  getMessagesOfRoom,
-  createMessage,
-} = require("../controllers/messageController");
+import { Router } from "express";
+import { requireAuth } from "../middleware/requireAuth.js";
+import  { getMessages,getMessagesOfRoom,createMessage} from "../controllers/messageController.js";
 
-//Get all messages
+const router  = Router();
+
 router.get("/", getMessages);
-
-//Get all messages of a single room
 router.get("/:id", getMessagesOfRoom);
-
-//auth
 router.use(requireAuth);
-
-//Create a message
 router.post("/:id", createMessage);
 
-module.exports = router;
+export default router;

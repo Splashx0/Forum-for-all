@@ -1,13 +1,13 @@
-const Topic = require("../models/topic");
+import { Topic } from "../models/topic.js";
 
 //GET topics
-const getTopics = async (req, res) => {
+export const getTopics = async (req, res) => {
   const topics = await Topic.find().populate("rooms");
   res.status(200).json({ topics });
 };
 
 //Create topic
-const createTopic = async (req, res) => {
+export const createTopic = async (req, res) => {
   const { name } = req.body;
   try {
     const topic = await Topic.create({
@@ -19,5 +19,3 @@ const createTopic = async (req, res) => {
     res.status(400).json({ error });
   }
 };
-
-module.exports = { getTopics, createTopic };

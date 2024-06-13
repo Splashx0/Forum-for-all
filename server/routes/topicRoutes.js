@@ -1,10 +1,9 @@
-const express = require("express");
-const router = express.Router();
-const { getTopics, createTopic } = require("../controllers/topicController");
-//GET topics
-router.get("/", getTopics);
+import {Router} from "express"
+import  { getTopics, createTopic }  from "../controllers/topicController.js";
 
-//CREATE topic
+const router = Router();
+
+router.get("/", getTopics);
 router.post("/", createTopic);
 
-module.exports = router;
+export default router;

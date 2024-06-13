@@ -1,10 +1,6 @@
-const express = require("express");
-const router = express.Router();
-const multer = require("multer");
-const { getProfile, editProfile } = require("../controllers/profileController");
-
-//Get profile
-router.get("/:id", getProfile);
+import { Router } from "express";
+import multer from "multer";
+import { getProfile, editProfile }  from "../controllers/profileController.js";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -16,8 +12,12 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+const router =Router();
+
+//Get profile
+router.get("/:id", getProfile);
 
 //Edit Profile
 router.post("/:id/edit", upload.single("avatar"), editProfile);
 
-module.exports = router;
+export default router;

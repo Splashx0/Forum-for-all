@@ -1,7 +1,8 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
+import validator from "validator";
+
 const Schema = mongoose.Schema;
-const bcrypt = require("bcrypt");
-const validator = require("validator");
 
 const userSchema = new Schema(
   {
@@ -80,5 +81,5 @@ userSchema.statics.login = async function (email, password) {
   return user;
 };
 
-const User = mongoose.model("user", userSchema); // pluriel and search for it in db
-module.exports = User;
+export const User = mongoose.model("user", userSchema); // pluriel and search for it in db
+
