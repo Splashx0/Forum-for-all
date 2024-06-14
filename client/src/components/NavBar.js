@@ -15,7 +15,7 @@ function NavBar() {
 
   useEffect(() => {
     const fetchProfile = async () => {
-      const response = await fetch(`/api/profile/${user?.username}`, {
+      const response = await fetch(`https://it-forum.vercel.app/api/profile/${user?.username}`, {
         headers: {
           Authorization: `Bearer ${user?.token}`,
           "Content-Type": "application/json",

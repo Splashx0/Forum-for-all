@@ -8,7 +8,7 @@ const RecentActivities = () => {
   const dispatch = useDispatch();
 
   const fetchMessages = async () => {
-    const response = await fetch(`/api/messages/`);
+    const response = await fetch(`https://it-forum.vercel.app/api/messages/`);
     const data = await response.json();
     dispatch(setMessages(data.messages));
   };

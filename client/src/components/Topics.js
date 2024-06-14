@@ -9,7 +9,7 @@ const Topics = () => {
   const [allRooms, setAllRooms] = useState([]);
   useEffect(() => {
     const fetchTopics = async () => {
-      const response = await fetch("/api/topics");
+      const response = await fetch("https://it-forum.vercel.app/api/topics");
       const data = await response.json();
       dispatch(setTopics(data.topics));
     };
@@ -18,7 +18,7 @@ const Topics = () => {
 
   useEffect(() => {
     const fetchRooms = async () => {
-      const response = await fetch("/api/rooms");
+      const response = await fetch("https://it-forum.vercel.app/api/rooms");
       const data = await response.json();
       setAllRooms(data.rooms);
     };

@@ -6,7 +6,7 @@ export const useRegister = () => {
   const dispatch = useDispatch();
   const [error, setError] = useState(null);
   const registerUser = async (username, email, password) => {
-    const response = await fetch("/api/user/register", {
+    const response = await fetch("https://it-forum.vercel.app/api/user/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, email, password }),

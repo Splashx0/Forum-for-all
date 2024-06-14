@@ -20,7 +20,7 @@ const EditProfile = () => {
     const formData = new FormData();
     formData.append("avatar", file ? file : file);
     formData.append("bio", bio ? bio : "write something");
-    const response = await fetch(`/api/profile/${id}/edit`, {
+    const response = await fetch(`https://it-forum.vercel.app/api/profile/${id}/edit`, {
       method: "POST",
       headers: { Authorization: `Bearer ${user.token}` },
       body: formData,

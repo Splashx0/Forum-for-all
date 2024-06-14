@@ -27,3 +27,4 @@ root.render(
     </QueryClientProvider>
   </BrowserRouter>
 );
+//  //"proxy": "http://localhost:8000",

@@ -14,7 +14,7 @@ const Room = () => {
   const [Body, setBody] = useState("");
   useEffect(() => {
     const fetchRooms = async () => {
-      const response = await fetch(`/api/rooms/${id}`);
+      const response = await fetch(`https://it-forum.vercel.app/api/rooms/${id}`);
       const data = await response.json();
       setRoom(data.room);
     };
@@ -23,7 +23,7 @@ const Room = () => {
 
   useEffect(() => {
     const fetchMessages = async () => {
-      const response = await fetch(`/api/messages/${id}`);
+      const response = await fetch(`https://it-forum.vercel.app/api/messages/${id}`);
       const data = await response.json();
       dispatch(setMessages(data.messages));
     };
@@ -33,7 +33,7 @@ const Room = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     e.target.reset();
-    const response = await fetch(`/api/messages/${id}`, {
+    const response = await fetch(`https://it-forum.vercel.app/api/messages/${id}`, {
       headers: {
         Authorization: `Bearer ${user.token}`,
         "Content-Type": "application/json",

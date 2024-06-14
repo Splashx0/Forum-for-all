@@ -17,7 +17,7 @@ const RoomList = () => {
   const connectedUser = user?.username;
   useEffect(() => {
     const fetchRooms = async () => {
-      const response = await fetch("/api/rooms");
+      const response = await fetch("https://it-forum.vercel.app/api/rooms");
       const data = await response.json();
       dispatch(setRooms(data.rooms));
     };
@@ -25,7 +25,7 @@ const RoomList = () => {
   }, [dispatch]);
 
   const handleDelete = async (id) => {
-    const response = await fetch(`/api/rooms/${id}`, {
+    const response = await fetch(`https://it-forum.vercel.app/api/rooms/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${user.token}` },
     });

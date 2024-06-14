@@ -17,7 +17,7 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchProfile = async () => {
-      const response = await fetch(`/api/profile/${id}`);
+      const response = await fetch(`https://it-forum.vercel.app/api/profile/${id}`);
       const data = await response.json();
       setProfile(data.user);
       setRooms(data.user.rooms);
@@ -26,7 +26,7 @@ const Profile = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rooms]);
   const handleDelete = async (id) => {
-    const response = await fetch(`/api/rooms/${id}`, {
+    const response = await fetch(`https://it-forum.vercel.app/api/rooms/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${user?.token}` },
     });

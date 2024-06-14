@@ -21,7 +21,7 @@ const CreateRoom = () => {
   });
   useEffect(() => {
     const fetchTopics = async () => {
-      const response = await fetch("/api/topics", {
+      const response = await fetch("https://it-forum.vercel.app/api/topics", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${user?.token}`,
@@ -36,7 +36,7 @@ const CreateRoom = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
-    const response = await fetch("/api/rooms", {
+    const response = await fetch("https://it-forum.vercel.app/api/rooms", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
